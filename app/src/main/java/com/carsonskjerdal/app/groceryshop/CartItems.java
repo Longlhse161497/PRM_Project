@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public final class CartItems {
-
+    private int id;
     private String name;
     private Integer image;
     private String price;
@@ -23,6 +23,22 @@ public final class CartItems {
         this.price = price;
         this.quantity = quantity;
 
+    }
+
+    public CartItems(int id, String name, Integer image, String price, String quantity) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {

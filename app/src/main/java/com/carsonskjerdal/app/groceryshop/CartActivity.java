@@ -21,6 +21,8 @@ public class CartActivity extends AppCompatActivity {
     Button checkoutButton;
     List<CartItems> cartProducts;
     CartItems cartItems;
+    RecyclerView recyclerView;
+    CartItemAdapter mAdapter;
 
     DatabaseManager dbManager;
     //final SQLiteDatabase mDatabase = dbManager.openDatabase();
@@ -32,7 +34,7 @@ public class CartActivity extends AppCompatActivity {
 
         dbManager = DatabaseManager.getInstance(this);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
@@ -44,7 +46,7 @@ public class CartActivity extends AppCompatActivity {
         //method to build the CartProducts list
         cartProducts = getCartData();
 
-        CartItemAdapter mAdapter = new CartItemAdapter(cartProducts);
+        mAdapter = new CartItemAdapter(this, cartProducts);
         recyclerView.setAdapter(mAdapter);
 
         TextView textTotal = findViewById(R.id.textViewTotal);
@@ -77,7 +79,7 @@ public class CartActivity extends AppCompatActivity {
         CartItems cartItem;
         for(int i = 0; i < cartProducts.size(); i++){
             cartItem = cartProducts.get(i);
-            total += Double.parseDouble(cartItem.getPrice());
+            total += Double.parseDouble(cartItem.getPrice()) * Double.parseDouble(cartItem.getQuantity());
         }
 
         return total.toString();
@@ -93,12 +95,13 @@ public class CartActivity extends AppCompatActivity {
         //loop through putting the cursor data into object which are then put into a list
         try (Cursor cursor = dbManager.queryAllItems("cart")) {
             while (cursor.moveToNext()) {
-                String data = cursor.getString(1);
-                Integer data2 = cursor.getInt(2);
-                String data3 = cursor.getString(3);
-                String data4 = cursor.getString(4);
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                Integer itemImage = cursor.getInt(2);
+                String price = cursor.getString(3);
+                String quantity = cursor.getString(4);
 
-                cartItems = new CartItems(data, data2, data3, data4);
+                cartItems = new CartItems(id, name, itemImage, price, quantity);
 
                 list.add(cartItems);
             }
@@ -107,5 +110,12 @@ public class CartActivity extends AppCompatActivity {
         }
 
         return list;
+    }
+
+    public void deleteById(int id){
+        dbManager.deleteById("cart", id);
+        cartProducts = getCartData();
+        mAdapter = new CartItemAdapter(this, cartProducts);
+        recyclerView.setAdapter(mAdapter);
     }
 }

@@ -58,4 +58,9 @@ public class DatabaseManager {
         return db.rawQuery("select * from " + table, null);
     }
 
+    public void deleteById(String table, int id){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM " + table + " WHERE id = '"+id+"'");
+    }
+
 }

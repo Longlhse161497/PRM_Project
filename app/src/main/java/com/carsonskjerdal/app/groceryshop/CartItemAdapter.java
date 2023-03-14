@@ -22,14 +22,13 @@ import java.util.List;
  */
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartHolder> {
-
+    private CartActivity context;
     private List<CartItems> cartList;
     private LayoutInflater mInflater;
 
-    public CartItemAdapter(List<CartItems> list) {
-        cartList = list;
-        //mInflater = LayoutInflater.from(context);
-
+    public CartItemAdapter(CartActivity context, List<CartItems> cartList) {
+        this.context = context;
+        this.cartList = cartList;
     }
 
     /* ViewHolder for each cart item */
@@ -47,16 +46,15 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartHo
             image = itemView.findViewById(R.id.image);
             price = itemView.findViewById(R.id.price);
             button = itemView.findViewById(R.id.delete);
+            button.setOnClickListener(this::onClick);
         }
-
-
 
         @Override
         public void onClick(View v) {
             Log.e("Adapter","On Click");
             switch(v.getId()){
                 case R.id.delete:
-                    Log.e("Adapter","Item Deleted");
+                    context.deleteById(cartList.get(getAdapterPosition()).getId());
                     break;
             }
         }
