@@ -1,11 +1,5 @@
 package com.carsonskjerdal.app.groceryshop;
 
-/**
- * Created by Carson on 2017-12-05.
- * <p>
- * Feel free to use code just give credit please :)
- */
-
 import java.util.List;
 
 /**

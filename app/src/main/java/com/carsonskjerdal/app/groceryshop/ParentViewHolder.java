@@ -4,12 +4,6 @@ package com.carsonskjerdal.app.groceryshop;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by Carson on 2017-12-05.
- * <p>
- * Code borrowd from another project
- */
-
 public class ParentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private ParentListItemExpandCollapseListener mParentListItemExpandCollapseListener;

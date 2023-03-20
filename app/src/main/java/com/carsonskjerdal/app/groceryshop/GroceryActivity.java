@@ -74,7 +74,6 @@ public class GroceryActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Do your search
                 return false;
             }
 
@@ -93,7 +92,7 @@ public class GroceryActivity extends AppCompatActivity {
                         Intent intent = new Intent(view.getContext(), ProductsActivity.class);
 
                         //passing data over to next activity
-                        Groceries grocery = list.get(position);
+                        Groceries grocery = myAdapter.groceryList.get(position);
                         String nameToPass = grocery.getName();
 
                         intent.putExtra("resultName", nameToPass);
@@ -103,22 +102,10 @@ public class GroceryActivity extends AppCompatActivity {
 
                     @Override
                     public void onLongItemClick(View view, int position) {
-                        // in case LongClick is to later be implemented
+
                     }
                 })
         );
-
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
     }
 
 
@@ -135,65 +122,48 @@ public class GroceryActivity extends AppCompatActivity {
                 // complete workout
                 Integer int1 = 0;
                 //Adds new workout to Adapter
-                Intent myIntent = new Intent(GroceryActivity.this,
-                        CartActivity.class);
+                Intent myIntent = new Intent(GroceryActivity.this, CartActivity.class);
                 startActivityForResult(myIntent, int1);
                 return true;
-
-            /*case R.id.action_complete:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;*/
-
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
         }
     }
 
+    private List<Groceries> buildList() {
+        List<Groceries> list = new ArrayList<>();
+        Groceries groceries;
 
+        //opens a cursor containing all the data from our database Table
 
-   private List<Groceries> buildList() {
-       List<Groceries> list = new ArrayList<>();
-       Groceries groceries;
+        //loop through putting the cursor data into object which are then put into a list
+        try (Cursor cursor = dbManager.queryAllItems("groceries")) {
+            while (cursor.moveToNext()) {
+                String data = cursor.getString(1);
+                String data2 = cursor.getString(2);
 
-       //opens a cursor containing all the data from our database Table
+                groceries = new Groceries(data, data2);
 
-       //loop through putting the cursor data into object which are then put into a list
-       try (Cursor cursor = dbManager.queryAllItems("groceries")) {
-           while (cursor.moveToNext()) {
-               String data = cursor.getString(1);
-               String data2 = cursor.getString(2);
+                list.add(groceries);
+            }
+            //close the cursor after use.
+            cursor.close();
+        }
 
-               groceries = new Groceries(data, data2);
-
-               list.add(groceries);
-           }
-           //close the cursor after use.
-           cursor.close();
-       }
-
-       return list;
+        return list;
     }
 
     void filter(String text) {
         List<Groceries> temp = new ArrayList<>();
         for (Groceries d : list) {
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
             String searchText = text.toLowerCase();
             String recycleText = d.getName().toLowerCase();
             if (recycleText.contains(searchText)) {
                 temp.add(d);
-
             }
-
             //update recyclerview
             myAdapter.updateList(temp);
-
-
         }
     }
 }

@@ -8,7 +8,6 @@
     tools:context="com.carsonskjerdal.app.groceryshop.CartActivity">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/colorPrimaryDark"
@@ -45,6 +44,24 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/checkout"
                 android:textColor="@color/colorGrey1" />
+
+            <Button
+                android:id="@+id/button_clear"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorGrey1"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="clear cart" />
+
+            <Button
+                android:id="@+id/button_shop"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorGrey1"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Back to shop" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +74,6 @@
             android:paddingEnd="10dp">
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

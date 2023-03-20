@@ -5,12 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Carson on 2017-12-13.
- * <p>
- * Feel free to use code just give credit please :)
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
@@ -90,24 +84,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion != newVersion) {
-            // Simplest implementation is to drop all old tables and recreate them
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_GROCERIES);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_CART);
-            onCreate(db);
-        }
-    }
 
+    }
 
     private void addTableData(SQLiteDatabase db) {
         ContentValues values = new ContentValues();
 
         //add Grocery data to its table
 
-        String[][] data = {{"Fish", "fishicon48"}, {"Bread", "breadicon"}, {"Milk", "milkicon"}, {"Apples", "appleicon"},
-                {"Oranges", "orangeicon"}, {"Candy", "candyicon"}, {"Soup", "soupicon"}, {"Medicine", "medicineicon"}, {"Pasta", "pastaicon"},
-                {"Condiments", "condimenticon"}, {"Soft Drinks", "softdrinkicon"}, {"Beef", "beeficon"}, {"Vegetables", "veggieicon"}, {"Cheese", "cheeseicon"}};
+        String[][] data = {{"Cá", ""}, {"Bánh mì", ""}, {"Sữa", ""}, {"Táo", ""},
+                {"Cam", ""}, {"Kẹo", ""}, {"Gia vị", ""},
+                {"Nước uống", ""}, {"Thịt bò", ""}, {"Rau", ""}};
 
         for (String[] aData : data) {
             values.put(KEY_GROCERIES_NAME, aData[0]);
@@ -118,18 +105,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //add Product data to its table
         ContentValues values2 = new ContentValues();
-        //ugly example data
-        String[][] data2 = {{"Johnnys Fish", "fishicon48", "11.95", "Fish"},  {"Pirate Man Fish", "fishicon48", "15.95", "Fish"},  {"Prime AA Fish", "fishicon48", "11.95", "Fish"},  {"Bland Bread", "0", "3.15", "Bread"}
-                ,  {"King's Bread", "0", "6.95", "Bread"},  {"Wonder Bread", "0", "3.95", "Bread"},  {"Moo Man Milk", "0", "4.25", "Milk"},  {"Prairie Cow", "0", "4.45", "Milk"}
-                ,  {"American Milk", "0", "11.95", "Milk"},  {"Red Apples", "0", "11.95", "Apples"},  {"Round New Yorks", "0", "11.95", "Apples"},  {"Sour Sam Apples", "0", "11.95", "Apples"}
-                ,  {"Not Red Oranges", "0", "0.95", "Oranges"},  {"Chinese", "0", "1.10", "Oranges"},  {"Box Oranges", "0", "18.95", "Oranges"},  {"Sour Keys", "0", "0.25", "Candy"}
-                ,  {"Blue Whales", "0", "0.25", "Candy"},  {"Pringles", "0", "1.25", "Candy"},  {"Johnnys Fish", "0", "11.95", "Soup"},  {"Johnnys Fish", "0", "11.95", "Soup"}
-                ,  {"Johnnys Fish Soup", "0", "11.95", "Soup"},  {"Johnnys Fish", "0", "11.95", "Medicine"},  {"Johnnys Fish", "0", "11.95", "Medicine"},  {"Johnnys Fish", "0", "11.95", "Medicine"}
-                ,  {"Johnnys Fish Pasta", "0", "11.95", "Pasta"},  {"Johnnys Fish", "0", "11.95", "Pasta"},  {"Johnnys Fish", "0", "11.95", "Pasta"},  {"Johnnys Fish", "0", "11.95", "Condiments"}
-                ,  {"Johnnys Fish", "0", "11.95", "Condiments"},  {"Johnnys Fish", "0", "11.95", "Soft Drinks"},  {"Johnnys Fish", "0", "11.95", "Soft Drinks"},  {"Johnnys Fish", "0", "11.95", "Soft Drinks"}
-                ,  {"Johnnys Beef", "0", "11.95", "Beef"},  {"Johnnys Fish", "0", "11.95", "Condiments"},  {"Johnnys Fish", "0", "11.95", "Beef"},  {"Johnnys Fish", "0", "11.95", "Beef"}
-                ,  {"Johnnys Fish", "0", "11.95", "Vegetables"},  {"Johnnys Fish", "0", "11.95", "Vegetables"},  {"Johnnys Fish", "0", "11.95", "Vegetables"},  {"Johnnys Fish", "0", "11.95", "Cheese"}
-                ,  {"Johnnys Cheese", "0", "11.95", "Cheese"},  {"Johnnys Fish", "0", "11.95", "Cheese"}};
+
+        String[][] data2 = {{"Cá thu", "0", "11000", "Cá"}, {"Cá basa", "0", "15000", "Cá"}, {"Cá hồi", "", "20000", "Cá"}, {"Bánh mì lạt", "0", "11000", "Bánh mì"}
+                , {"Bánh mì que", "0", "6000", "Bánh mì"}, {"Vinamilk", "0", "4000", "Sữa"}, {"Cô gái Hà Lan", "0", "5000", "Sữa"}
+                , {"Dalat milk", "0", "7000", "Sữa"}, {"Táo đỏ", "0", "11000", "Táo"}, {"Táo xanh", "0", "12000", "Táo"}, {"Táo Nhập", "0", "15000", "Táo"}
+                , {"Cam Việt Nam", "0", "3000", "Cam"}, {"Cam nhập", "0", "7000", "Cam"}, {"Milkita", "0", "2500", "Kẹo"}
+                , {"Kẹo cà phê", "0", "2500", "Kẹo"}, {"Kẹo bạc hà", "0", "1500", "Kẹo"}, {"Nước tương", "0", "18000", "Gia vị"}
+                , {"Nước mắm", "0", "19000", "Gia vị"}, {"Tiêu", "0", "4000", "Gia vị"}, {"Coca", "0", "7500", "Nước uống"}, {"Pepsi", "0", "8000", "Nước uống"}
+                , {"Xá xị", "0", "6000", "Nước uống"}, {"Bò Việt Nam", "0", "25000", "Thịt bò"}, {"Bò Mỹ", "0", "45000", "Thịt bò"}
+                , {"Rau cải", "0", "11000", "Rau"}, {"Rau muống", "0", "12000", "Rau"}, {"Mồng tơi", "0", "11500", "Rau"}};
 
         for (String[] aData : data2) {
             values2.put(KEY_PRODUCTS_NAME, aData[0]);

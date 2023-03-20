@@ -1,15 +1,6 @@
 package com.carsonskjerdal.app.groceryshop;
 
-
-
-
 import java.util.List;
-
-/**
- * Created by Carson on 2017-11-22.
- * <p>
- * Feel free to use code just give credit please :)
- */
 
 public final class Products implements ParentListItem {
 
@@ -17,7 +8,7 @@ public final class Products implements ParentListItem {
     private String image;
     private List<ProductsChild> mChildrenList;
 
-    public Products(String name, String image, List<ProductsChild> productsChildren){
+    public Products(String name, String image, List<ProductsChild> productsChildren) {
 
         this.name = name;
         this.image = image;

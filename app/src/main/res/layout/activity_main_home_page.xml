@@ -17,7 +17,6 @@
             android:elevation="4dp">
 
     <TextView
-        android:id="@+id/text_view_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/toolbar"
@@ -29,24 +28,21 @@
            </android.support.v7.widget.Toolbar>
 
 
-    <ImageView
-        android:layout_width="110dp"
-        android:layout_height="122dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:contentDescription="TODO"
-         />
-
-
     <TextView
-        android:id="@+id/textView6"
         android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:textColor="#444444"
-        android:text="Carson Skjerdal" />
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="Welcome To The G-Market"
+        android:textColor="#000"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/grocery"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"/>
 
     <Button
         android:id="@+id/shop_button"
@@ -57,14 +53,5 @@
         android:background="@color/colorAccent"
         android:text="SHOP"
         android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:background="@android:color/transparent"
-        android:text="Settings"
-        android:textColor="@color/colorGrey3" />
 
 </LinearLayout>

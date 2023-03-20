@@ -15,13 +15,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-
-/**
- * Created by Carson on 2017-11-28.
- * <p>
- * Feel free to use code just give credit please :)
- */
-
 public class ProductsChildViewHolder extends ChildViewHolder {
 
     public TextView mDateText;
@@ -29,8 +22,6 @@ public class ProductsChildViewHolder extends ChildViewHolder {
     public TextView mQuanityText;
     public SeekBar mSeekBar;
     View view;
-    // variable to hold context
-    private Context context;
 
     public ProductsChildViewHolder(final View itemView) {
         super(itemView);
@@ -38,10 +29,8 @@ public class ProductsChildViewHolder extends ChildViewHolder {
         final DatabaseManager dbManager = DatabaseManager.getInstance(itemView.getContext());
         final SQLiteDatabase mDatabase = dbManager.openDatabase();
 
-
         mDateText = itemView.findViewById(R.id.child_list_item_crime_date_text_view);
         mAddButton = itemView.findViewById(R.id.add_button);
-
 
         view = itemView.findViewById(R.id.seekBar);
 
@@ -51,7 +40,6 @@ public class ProductsChildViewHolder extends ChildViewHolder {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
                 mQuanityText.setText("Quantity: " + i);
             }
 
@@ -71,8 +59,9 @@ public class ProductsChildViewHolder extends ChildViewHolder {
             public void onClick(View view) {
 
                 //add the item to the shopping cart.
-                    //does not work if quantity is zero
+                //does not work if quantity is zero
                 String quanityCount = (String) mQuanityText.getText();
+                String priceTag = (String) mDateText.getText();
                 String quanityNumber = quanityCount.replaceAll("[^0-9]", "");
                 int count = Integer.parseInt(quanityNumber);
                 if (count != 0) {
@@ -87,14 +76,7 @@ public class ProductsChildViewHolder extends ChildViewHolder {
 
                     Log.e("list output", "" + products.getName());
 
-                    String priceTag = (String) mDateText.getText();
-
-                    //toast
-                    String toastMsg = mDateText.getText() + " Added To Cart";
-                    Toast.makeText(view.getContext(),
-                            toastMsg,
-                            Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(view.getContext(), products.getName() + " added to cart", Toast.LENGTH_SHORT).show();
 
                     // Add items to cart table to the database
                     ContentValues values = new ContentValues();
@@ -105,12 +87,7 @@ public class ProductsChildViewHolder extends ChildViewHolder {
                     mDatabase.insert("cart", null, values);
                     Log.e("values", "" + values);
                 } else {
-                    //toast
-                    String toastMsg = "Quantity must be greater than zero.";
-                    Toast.makeText(view.getContext(),
-                            toastMsg,
-                            Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(view.getContext(), "Quantity must be greater than zero.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

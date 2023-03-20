@@ -12,20 +12,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
-    Button checkoutButton;
+    Button checkoutButton, shopButton, buttonClear;
     List<CartItems> cartProducts;
     CartItems cartItems;
     RecyclerView recyclerView;
     CartItemAdapter mAdapter;
+    TextView textTotal;
 
     DatabaseManager dbManager;
-    //final SQLiteDatabase mDatabase = dbManager.openDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,49 +50,58 @@ public class CartActivity extends AppCompatActivity {
         mAdapter = new CartItemAdapter(this, cartProducts);
         recyclerView.setAdapter(mAdapter);
 
-        TextView textTotal = findViewById(R.id.textViewTotal);
+        textTotal = findViewById(R.id.textViewTotal);
         String total = buildPrice(cartProducts);
         textTotal.setText(total);
 
-        //button for ending the activity and moving to transaction completion
         checkoutButton = findViewById(R.id.button_checkout);
+        shopButton = findViewById(R.id.button_shop);
+        buttonClear = findViewById(R.id.button_clear);
 
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (cartProducts.size() == 0){
+                    Toast.makeText(CartActivity.this,"Cart is empty",Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent myIntent = new Intent(CartActivity.this, CheckoutActivity.class);
+                    startActivity(myIntent);
+                }
+            }
+        });
 
-                //pass the data
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteAll();
+            }
+        });
 
-                //clear the data after payment is successful
-
-                //opens payment window
-                Intent myIntent = new Intent(CartActivity.this, CheckoutActivity.class);
-
-                startActivity(myIntent);
-
-                //purchase made closing screen with eta counter?
+        shopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CartActivity.this, GroceryActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     private String buildPrice(List<CartItems> cartProducts) {
-        Double total = 0.0;
+        int total = 0;
         CartItems cartItem;
-        for(int i = 0; i < cartProducts.size(); i++){
+        for (int i = 0; i < cartProducts.size(); i++) {
             cartItem = cartProducts.get(i);
-            total += Double.parseDouble(cartItem.getPrice()) * Double.parseDouble(cartItem.getQuantity());
+            total += Integer.parseInt(cartItem.getPrice()) * Integer.parseInt(cartItem.getQuantity());
         }
 
-        return total.toString();
+        return Integer.toString(total);
     }
 
     private List<CartItems> getCartData() {
         List<CartItems> list = new ArrayList<>();
-        Integer image = R.mipmap.ic_launcher_round;
-        cartItems = new CartItems("App1", 0, "19.21", "1");
+        //cartItems = new CartItems("App1", 0, "19.21", "1");
 
         //opens a cursor containing all the data from our database Table
-
         //loop through putting the cursor data into object which are then put into a list
         try (Cursor cursor = dbManager.queryAllItems("cart")) {
             while (cursor.moveToNext()) {
@@ -108,14 +118,24 @@ public class CartActivity extends AppCompatActivity {
             //close the cursor after use.
             cursor.close();
         }
-
         return list;
     }
 
-    public void deleteById(int id){
+    public void deleteById(int id) {
         dbManager.deleteById("cart", id);
         cartProducts = getCartData();
         mAdapter = new CartItemAdapter(this, cartProducts);
         recyclerView.setAdapter(mAdapter);
+        String total = buildPrice(cartProducts);
+        textTotal.setText(total);
+    }
+
+    public void deleteAll() {
+        dbManager.deleteAll("cart");
+        cartProducts = getCartData();
+        mAdapter = new CartItemAdapter(this, cartProducts);
+        recyclerView.setAdapter(mAdapter);
+        String total = buildPrice(cartProducts);
+        textTotal.setText(total);
     }
 }

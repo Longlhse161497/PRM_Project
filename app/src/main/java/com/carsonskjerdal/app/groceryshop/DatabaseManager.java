@@ -4,15 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by Carson on 2017-12-13.
- * <p>
- * Feel free to use code just give credit please :)
- *
- * Singleton that controls access to the SQLiteDatabase instance
- * for this application.
- */
-
 public class DatabaseManager {
     private Integer mOpenCounter = 0;
 
@@ -25,9 +16,6 @@ public class DatabaseManager {
     }
 
     public static synchronized DatabaseManager getInstance(Context context) {
-        // Use the application context, which will ensure that you
-        // don't accidentally leak an Activity's context.
-        // See this article for more information: http://bit.ly/6LRzfx
         if (sInstance == null) {
             sInstance = new DatabaseManager(context.getApplicationContext());
         }
@@ -35,8 +23,8 @@ public class DatabaseManager {
     }
 
     public synchronized SQLiteDatabase openDatabase() {
-        mOpenCounter+=1;
-        if(mOpenCounter == 1) {
+        mOpenCounter += 1;
+        if (mOpenCounter == 1) {
             // Opening new database
             mDatabase = myDbHelper.getWritableDatabase();
         }
@@ -44,8 +32,8 @@ public class DatabaseManager {
     }
 
     public synchronized void closeDatabase() {
-        mOpenCounter-=1;
-        if(mOpenCounter == 0) {
+        mOpenCounter -= 1;
+        if (mOpenCounter == 0) {
             // Closing database
             mDatabase.close();
 
@@ -55,12 +43,17 @@ public class DatabaseManager {
     public Cursor queryAllItems(String table) {
         //Implements the query
         SQLiteDatabase db = myDbHelper.getReadableDatabase();
-        return db.rawQuery("select * from " + table, null);
+        return db.rawQuery("SELECT * FROM " + table, null);
     }
 
-    public void deleteById(String table, int id){
+    public void deleteAll(String table) {
         SQLiteDatabase db = myDbHelper.getWritableDatabase();
-        db.execSQL("DELETE FROM " + table + " WHERE id = '"+id+"'");
+        db.execSQL("DELETE FROM " + table);
+    }
+
+    public void deleteById(String table, int id) {
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM " + table + " WHERE id = '" + id + "'");
     }
 
 }

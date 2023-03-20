@@ -6,14 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
 import java.util.List;
-
-/**
- * Created by Carson on 2017-11-28.
- * <p>
- * Feel free to use code just give credit please :)
- */
 
 public class ProductsExpandableAdapter extends ExpandableRecyclerAdapter<ProductsParentViewHolder, ProductsChildViewHolder> {
 
@@ -52,7 +45,6 @@ public class ProductsExpandableAdapter extends ExpandableRecyclerAdapter<Product
     public void onBindChildViewHolder(ProductsChildViewHolder productsChildViewHolder, int i, Object childObject) {
         ProductsChild productsChild = (ProductsChild) childObject;
         productsChildViewHolder.mDateText.setText(productsChild.getPrice());
-
     }
 
 

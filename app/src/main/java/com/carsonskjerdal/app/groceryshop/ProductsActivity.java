@@ -26,17 +26,7 @@ import java.util.List;
 
 public class ProductsActivity extends AppCompatActivity {
 
-    //Ui Componenets
-
-    SearchView searchView;
-
-    //Adapter
     ProductsExpandableAdapter mAdapter;
-
-    //list
-    List<Products> list;
-
-    //Database
     DatabaseManager dbManager;
 
     @Override
@@ -51,46 +41,13 @@ public class ProductsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("resultName");
 
-        //Search Bar
-        searchView = findViewById(R.id.search_view);
-        //Turn iconified to false:
-        searchView.setIconified(false);
-        //The above line will expand it to fit the area as well as throw up the keyboard
-
-        //To remove the keyboard, but make sure you keep the expanded version:
-        searchView.clearFocus();
-
         //proper list temporarily generated until a database is built
         final List<Products> products = generateProductList(name);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         mAdapter = new ProductsExpandableAdapter(this, products);
-        mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
-            @Override
-            public void onListItemExpanded(int position) {
-                Products expandedProducts = products.get(position);
-
-               /* String toastMsg = getResources().getString("expanded", expandedProducts.getName());
-                Toast.makeText(ProductsActivity.this,
-                        toastMsg,
-                        Toast.LENGTH_SHORT)
-                        .show();*/
-            }
-
-            @Override
-            public void onListItemCollapsed(int position) {
-                Products expandedProducts = products.get(position);
-
-               /* String toastMsg = getResources().getString("expanded", expandedProducts.getName());
-                Toast.makeText(ProductsActivity.this,
-                        toastMsg,
-                        Toast.LENGTH_SHORT)
-                        .show();*/
-            }
-        });
 
         recyclerView.setAdapter(mAdapter);
-       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(llm);
@@ -99,9 +56,7 @@ public class ProductsActivity extends AppCompatActivity {
                 llm.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-
         recyclerView.setLayoutManager(llm);
-
     }
 
 
@@ -123,7 +78,7 @@ public class ProductsActivity extends AppCompatActivity {
                     //pull name, image, and price
                     String data = cursor.getString(1);
                     String data2 = cursor.getString(2);
-                    Log.e("Cursor"," " + data2);
+                    Log.e("Cursor", " " + data2);
                     String price = cursor.getString(4);
 
                     //add child details, then combine to make a product item, finally add to list
@@ -138,32 +93,7 @@ public class ProductsActivity extends AppCompatActivity {
         }
 
         return list;
-
-
-       /* final List<Products> productsList = Arrays.asList(appleProduct1, appleProduct1);
-
-        return productsList;*/
     }
-
-
-    void filter(String text) {
-        List<Products> temp = new ArrayList<>();
-        for (Products d : list) {
-            //or use .equal(text) with you want equal match
-            //use .toLowerCase() for better matches
-            String searchText = text.toLowerCase();
-            String recycleText = d.getName().toLowerCase();
-            if (recycleText.contains(searchText)) {
-                temp.add(d);
-
-            }
-        }
-        //update recyclerview
-        //productsExpandableAdapter.updateList(temp);
-
-
-    }
-
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -178,21 +108,11 @@ public class ProductsActivity extends AppCompatActivity {
                 // complete workout
                 Integer int1 = 0;
                 //Adds new workout to Adapter
-                Intent myIntent = new Intent(ProductsActivity.this,
-                        CartActivity.class);
+                Intent myIntent = new Intent(ProductsActivity.this, CartActivity.class);
                 startActivityForResult(myIntent, int1);
                 return true;
-
-            /*case R.id.action_complete:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;*/
-
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }

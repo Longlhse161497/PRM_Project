@@ -10,13 +10,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by Carson on 2017-11-28.
- * <p>
- * Feel free to use code just give credit please :)
- */
-
-public class ProductsParentViewHolder extends ParentViewHolder{
+public class ProductsParentViewHolder extends ParentViewHolder {
 
     public TextView mTitleTextView;
     public ImageView mIconView;

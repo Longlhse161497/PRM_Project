@@ -15,9 +15,9 @@ import java.util.List;
 
 /**
  * Created by Carson on 2017-11-22.
- *
+ * <p>
  * RecyclerView adapter extended with project-specific required methods
- *
+ * <p>
  * This may all be null and useless now after upgrading my adapter with the ExpandabaleRecyclerAdapter
  */
 
@@ -51,8 +51,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartHo
 
         @Override
         public void onClick(View v) {
-            Log.e("Adapter","On Click");
-            switch(v.getId()){
+            Log.e("Adapter", "On Click");
+            switch (v.getId()) {
                 case R.id.delete:
                     context.deleteById(cartList.get(getAdapterPosition()).getId());
                     break;
@@ -87,7 +87,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartHo
     }
 
 
-    public void updateList(List<CartItems> newList){
+    public void updateList(List<CartItems> newList) {
         cartList = newList;
         notifyDataSetChanged();
     }

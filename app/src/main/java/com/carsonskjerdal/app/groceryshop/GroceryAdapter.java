@@ -11,15 +11,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Carson on 2017-11-22.
- *
- * RecyclerView adapter extended with project-specific required methods.
- */
-
 public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryHolder> {
 
-    private List<Groceries> groceryList;
+    public List<Groceries> groceryList;
     List<GroceryHolder> displayedList;
 
     public GroceryAdapter(List<Groceries> list) {
@@ -40,7 +34,6 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryH
             name = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.image);
         }
-
 
 
         @Override
@@ -66,7 +59,7 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryH
         holder.name.setText(grocery.getName());
 
         //sets image
-        Log.e("adapter","image " + grocery.getImage());
+        Log.e("adapter", "image " + grocery.getImage());
         String uri = grocery.getImage();
         Resources res = holder.image.getContext().getResources();
         holder.image.setImageResource(res.getIdentifier(uri, "drawable", BuildConfig.APPLICATION_ID));
@@ -81,7 +74,7 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryH
     }
 
 
-    public void updateList(List<Groceries> newList){
+    public void updateList(List<Groceries> newList) {
         groceryList = newList;
         notifyDataSetChanged();
     }

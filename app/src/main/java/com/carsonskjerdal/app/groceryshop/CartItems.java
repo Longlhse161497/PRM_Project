@@ -16,7 +16,7 @@ public final class CartItems {
     private String price;
     private String quantity;
 
-    public CartItems(String name, Integer image, String price, String quantity){
+    public CartItems(String name, Integer image, String price, String quantity) {
 
         this.name = name;
         this.image = image;
