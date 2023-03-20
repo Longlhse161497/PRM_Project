@@ -64,7 +64,6 @@ public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.GroceryH
         Resources res = holder.image.getContext().getResources();
         holder.image.setImageResource(res.getIdentifier(uri, "drawable", BuildConfig.APPLICATION_ID));
         //holder.image.setImageResource(grocery.getImage());
-
     }
 
 
