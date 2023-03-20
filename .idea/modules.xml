@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GroceryShop.iml" filepath="$PROJECT_DIR$/.idea/modules/GroceryShop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryShop.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PRM_Project.iml" filepath="$PROJECT_DIR$/.idea/modules/PRM_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRM_Project.app.unitTest.iml" />
     </modules>
   </component>
 </project>

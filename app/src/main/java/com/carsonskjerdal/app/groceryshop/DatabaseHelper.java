@@ -92,9 +92,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //add Grocery data to its table
 
-        String[][] data = {{"Cá", ""}, {"Bánh mì", ""}, {"Sữa", ""}, {"Táo", ""},
-                {"Cam", ""}, {"Kẹo", ""}, {"Gia vị", ""},
-                {"Nước uống", ""}, {"Thịt bò", ""}, {"Rau", ""}};
+        String[][] data = {{"Cá", "seafood"}, {"Bánh mì", "bread"}, {"Sữa", "milk"}, {"Táo", "apple"},
+                {"Cam", "orange"}, {"Kẹo", "candy"}, {"Gia vị", "spice"},
+                {"Nước uống", "soft_drink"}, {"Thịt bò", "beef"}, {"Rau", "vegetables"}};
 
         for (String[] aData : data) {
             values.put(KEY_GROCERIES_NAME, aData[0]);
@@ -106,14 +106,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //add Product data to its table
         ContentValues values2 = new ContentValues();
 
-        String[][] data2 = {{"Cá thu", "0", "11000", "Cá"}, {"Cá basa", "0", "15000", "Cá"}, {"Cá hồi", "", "20000", "Cá"}, {"Bánh mì lạt", "0", "11000", "Bánh mì"}
-                , {"Bánh mì que", "0", "6000", "Bánh mì"}, {"Vinamilk", "0", "4000", "Sữa"}, {"Cô gái Hà Lan", "0", "5000", "Sữa"}
-                , {"Dalat milk", "0", "7000", "Sữa"}, {"Táo đỏ", "0", "11000", "Táo"}, {"Táo xanh", "0", "12000", "Táo"}, {"Táo Nhập", "0", "15000", "Táo"}
-                , {"Cam Việt Nam", "0", "3000", "Cam"}, {"Cam nhập", "0", "7000", "Cam"}, {"Milkita", "0", "2500", "Kẹo"}
-                , {"Kẹo cà phê", "0", "2500", "Kẹo"}, {"Kẹo bạc hà", "0", "1500", "Kẹo"}, {"Nước tương", "0", "18000", "Gia vị"}
-                , {"Nước mắm", "0", "19000", "Gia vị"}, {"Tiêu", "0", "4000", "Gia vị"}, {"Coca", "0", "7500", "Nước uống"}, {"Pepsi", "0", "8000", "Nước uống"}
-                , {"Xá xị", "0", "6000", "Nước uống"}, {"Bò Việt Nam", "0", "25000", "Thịt bò"}, {"Bò Mỹ", "0", "45000", "Thịt bò"}
-                , {"Rau cải", "0", "11000", "Rau"}, {"Rau muống", "0", "12000", "Rau"}, {"Mồng tơi", "0", "11500", "Rau"}};
+        String[][] data2 = {{"Cá thu", "cathu", "11000", "Cá"}, {"Cá basa", "cabasa", "15000", "Cá"}, {"Cá hồi", "cahoi", "20000", "Cá"}, {"Bánh mì lạt", "banhmilat", "11000", "Bánh mì"}
+                , {"Bánh mì que", "banhmique", "6000", "Bánh mì"}, {"Vinamilk", "vinamilk", "4000", "Sữa"}, {"Cô gái Hà Lan", "dutchlady", "5000", "Sữa"}
+                , {"Dalat milk", "dalatmilk", "7000", "Sữa"}, {"Táo đỏ", "taodo", "11000", "Táo"}, {"Táo xanh", "taoxanh", "12000", "Táo"}, {"Táo Nhập", "taonhap", "15000", "Táo"}
+                , {"Cam Việt Nam", "camvietnam", "3000", "Cam"}, {"Cam nhập", "camnhap", "7000", "Cam"}, {"Milkita", "milkita", "2500", "Kẹo"}
+                , {"Kẹo cà phê", "keocaphe", "2500", "Kẹo"}, {"Kẹo bạc hà", "keobacha", "1500", "Kẹo"}, {"Nước tương", "nuoctuong", "18000", "Gia vị"}
+                , {"Nước mắm", "nuocmam", "19000", "Gia vị"}, {"Tiêu", "tieu", "4000", "Gia vị"}, {"Coca", "coca", "7500", "Nước uống"}, {"Pepsi", "pepsi", "8000", "Nước uống"}
+                , {"Xá xị", "xaxi", "6000", "Nước uống"}, {"Bò Việt Nam", "bovietnam", "25000", "Thịt bò"}, {"Bò Mỹ", "bomy", "45000", "Thịt bò"}
+                , {"Rau cải", "raucai", "11000", "Rau"}, {"Rau muống", "raumuong", "12000", "Rau"}, {"Mồng tơi", "mongtoi", "11500", "Rau"}};
 
         for (String[] aData : data2) {
             values2.put(KEY_PRODUCTS_NAME, aData[0]);
