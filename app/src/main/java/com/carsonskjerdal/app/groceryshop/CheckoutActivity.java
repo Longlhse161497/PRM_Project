@@ -47,7 +47,7 @@ public class CheckoutActivity extends AppCompatActivity {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(CheckoutActivity.this, GroceryActivity.class);
+                Intent i = new Intent(CheckoutActivity.this, CartActivity.class);
                 startActivity(i);
             }
         });
